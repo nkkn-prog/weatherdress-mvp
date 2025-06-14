@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherDress - Weather Mood Board Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .app-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .location-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .station-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .station-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .weather-mood-board {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weather-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .temperature-feel {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        
+        .temp-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .temp-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .temp-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .outfit-recommendation {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .outfit-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .outfit-items {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .outfit-item {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .outfit-icon {
+            font-size: 20px;
+        }
+        
+        .time-slider {
+            margin: 20px 0;
+        }
+        
+        .time-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .secondary-btn {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1 class="logo">WeatherDress</h1>
+            <p style="color: #666; font-size: 14px;">今日も素敵な一日を！</p>
+        </div>
+        
+        <div class="location-input">
+            <input type="text" class="station-input" placeholder="自宅の最寄り駅" value="渋谷">
+            <input type="text" class="station-input" placeholder="職場の最寄り駅" value="新宿">
+        </div>
+        
+        <div class="weather-mood-board">
+            <div class="weather-icon">🌤️</div>
+            <div class="temperature-feel">
+                <div class="temp-box">
+                    <div class="temp-label">朝の体感</div>
+                    <div class="temp-value">15°C</div>
+                </div>
+                <div class="temp-box">
+                    <div class="temp-label">昼の体感</div>
+                    <div class="temp-value">22°C</div>
+                </div>
+            </div>
+            <p style="font-size: 14px; opacity: 0.9;">朝は涼しく、昼は暖かい一日</p>
+        </div>
+        
+        <div class="outfit-recommendation">
+            <h3 class="outfit-title">今日のおすすめコーデ ✨</h3>
+            <div class="outfit-items">
+                <div class="outfit-item">
+                    <span class="outfit-icon">👔</span>
+                    <span>薄手の長袖シャツ</span>
+                </div>
+                <div class="outfit-item">
+                    <span class="outfit-icon">🧥</span>
+                    <span>軽めのカーディガン</span>
+                </div>
+                <div class="outfit-item">
+                    <span class="outfit-icon">👖</span>
+                    <span>チノパン</span>
+                </div>
+                <div class="outfit-item">
+                    <span class="outfit-icon">👟</span>
+                    <span>スニーカー</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="time-slider">
+            <div class="time-label">
+                <span>朝 7:00</span>
+                <span>昼 12:00</span>
+                <span>夜 19:00</span>
+            </div>
+            <input type="range" class="slider" min="7" max="19" value="7">
+        </div>
+        
+        <div class="quick-actions">
+            <button class="action-btn secondary-btn">履歴を見る</button>
+            <button class="action-btn primary-btn">今日はこれで決定！</button>
+        </div>
+    </div>
+    
+    <script>
+        // 簡単なインタラクション
+        const slider = document.querySelector('.slider');
+        const weatherIcon = document.querySelector('.weather-icon');
+        const outfitItems = document.querySelector('.outfit-items');
+        
+        slider.addEventListener('input', (e) => {
+            const hour = parseInt(e.target.value);
+            
+            if (hour < 10) {
+                weatherIcon.textContent = '🌤️';
+                updateOutfit('morning');
+            } else if (hour < 16) {
+                weatherIcon.textContent = '☀️';
+                updateOutfit('noon');
+            } else {
+                weatherIcon.textContent = '🌙';
+                updateOutfit('evening');
+            }
+        });
+        
+        function updateOutfit(timeOfDay) {
+            const outfits = {
+                morning: `
+                    <div class="outfit-item">
+                        <span class="outfit-icon">👔</span>
+                        <span>薄手の長袖シャツ</span>
+                    </div>
+                    <div class="outfit-item">
+                        <span class="outfit-icon">🧥</span>
+                        <span>軽めのカーディガン</span>
+                    </div>
+                `,
+                noon: `
+                    <div class="outfit-item">
+                        <span class="outfit-icon">👕</span>
+                        <span>半袖Tシャツ</span>
+                    </div>
+                    <div class="outfit-item">
+                        <span class="outfit-icon">🕶️</span>
+                        <span>サングラス</span>
+                    </div>
+                `,
+                evening: `
+                    <div class="outfit-item">
+                        <span class="outfit-icon">🧥</span>
+                        <span>ジャケット</span>
+                    </div>
+                    <div class="outfit-item">
+                        <span class="outfit-icon">🧤</span>
+                        <span>薄手の手袋</span>
+                    </div>
+                `
+            };
+            
+            outfitItems.innerHTML = outfits[timeOfDay] + `
+                <div class="outfit-item">
+                    <span class="outfit-icon">👖</span>
+                    <span>チノパン</span>
+                </div>
+                <div class="outfit-item">
+                    <span class="outfit-icon">👟</span>
+                    <span>スニーカー</span>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
